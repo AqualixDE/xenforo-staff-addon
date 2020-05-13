@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template_modifications>
+  <modification type="public" template="member_notable" modification_key="adding_staff_category" execution_order="10" enabled="1" action="str_replace">
+    <find><![CDATA[<xf:if is="$active">
+				<ol class="block-body">
+					<xf:foreach loop="{$resultsData.{$active.member_stat_key}}" key="$userId" value="$data">
+						<li class="block-row block-row--separated">
+							<xf:macro template="member_list_macros" name="item"
+								arg-user="{$data.user}"
+								arg-extraData="{$data.value}"
+								arg-extraDataBig="{{ true }}" />
+						</li>
+					<xf:else />
+						<li class="block-row">{{ phrase('no_users_match_specified_criteria') }}</li>
+					</xf:foreach>
+				</ol>
+			<xf:else />
+				<div class="block-body">
+					<ol class="memberOverviewBlocks">
+						<xf:foreach loop="$memberStats" key="$key" value="$memberStat">
+							<xf:macro name="overview_block"
+								arg-memberStat="{$memberStat}"
+								arg-results="{$resultsData.{$key}}" />
+						</xf:foreach>
+					</ol>
+				</div>
+			</xf:if>]]></find>
+    <replace><![CDATA[<xf:if is="{$key} == 'staff_members'">
+				<ol class="block-body">
+					<xf:foreach loop="$allStaff" key="$key" value="$users">
+						<xf:if is="$users != []">	
+							<h3 class="category">{$key}</h3>
+							<xf:foreach loop="$users" value="$user">
+								<li class="block-row block-row--separated">
+									<xf:macro template="member_list_macros" name="item"
+														  arg-user="{$user}"
+														  arg-extraDataBig="{{ true }}" />
+								</li>
+							</xf:foreach>
+						</xf:if>
+					</xf:foreach>
+				</ol>
+			<xf:else />
+			<xf:if is="$active">
+				<ol class="block-body">
+					<xf:foreach loop="{$resultsData.{$active.member_stat_key}}" key="$userId" value="$data">
+						<li class="block-row block-row--separated">
+							<xf:macro template="member_list_macros" name="item"
+								arg-user="{$data.user}"
+								arg-extraData="{$data.value}"
+								arg-extraDataBig="{{ true }}" />
+						</li>
+					<xf:else />
+						<li class="block-row">{{ phrase('no_users_match_specified_criteria') }}</li>
+					</xf:foreach>
+				</ol>
+			<xf:else />
+				<div class="block-body">
+					<ol class="memberOverviewBlocks">
+						<xf:foreach loop="$memberStats" key="$key" value="$memberStat">
+							<xf:macro name="overview_block"
+								arg-memberStat="{$memberStat}"
+								arg-results="{$resultsData.{$key}}" />
+						</xf:foreach>
+					</ol>
+				</div>
+			</xf:if>
+			</xf:if>]]></replace>
+  </modification>
+  <modification type="public" template="member_notable" modification_key="adding_style" execution_order="10" enabled="1" action="str_replace">
+    <find><![CDATA[</div>
+</xf:macro>]]></find>
+    <replace><![CDATA[$0
+<style>
+.category {
+    margin: 5px;
+    padding-left: 10px;
+    text-align: center;
+    border-bottom: 2px solid #fff;
+}
+</style>
+]]></replace>
+  </modification>
+</template_modifications>

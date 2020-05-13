@@ -1,0 +1,14 @@
+{
+    "legacy_addon_id": "",
+    "title": "[LS] StaffAddon",
+    "description": "Simple StaffAddon",
+    "version_id": 1000,
+    "version_string": "1.0.0",
+    "dev": "LinuxServer",
+    "dev_url": "https://github.com/LinuxClient",
+    "faq_url": "",
+    "support_url": "",
+    "extra_urls": [],
+    "require": [],
+    "icon": ""
+}
